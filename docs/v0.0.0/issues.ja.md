@@ -4,6 +4,8 @@
 
 分岐に関する Spec がないため、実装が進んでいません。
 
+案: [Alice Novel #6](https://github.com/AliceNovel/AliceNovel/issues/6)
+
 ## オプションが存在しない
 
 軽量を目的としていますが、多少のオプションが無いと、拡張性が低いと考えています。
@@ -14,6 +16,17 @@
 
 HTML では、`<img src="" alt=""/>` のように、`<` と `>` で囲んだものを認識するという方式を採用していますが、同様の対応が必要に考えられます。
 
+### アニメーション案
+
+案: [Alice Novel #127](https://github.com/AliceNovel/AliceNovel/issues/127#issuecomment-2576681643)
+
+`:fading` のように、画像のあとで指定する方法を検討しています。
+
+```sh
+# 例 (背景をフェードしながら変更する)
+> first-place.png :fading
+```
+
 ## 音声サポートが遅れている
 
-Alice Console は音声サポートが遅れている。
+Alice Console は音声サポートが遅れています。
