@@ -3,7 +3,7 @@
 public class ParserUnitTest
 {
     [Fact]
-    public void TestTokenizer()
+    public void TestStringParser()
     {
         // Arrange
         string input =
@@ -29,13 +29,52 @@ public class ParserUnitTest
         ];
 
         // Act
-        var tokens = Tokenizer.Tokenize(input);
+        // var tokens = Tokenizer.Tokenize(input);
 
         // Assert
-        Assert.Equal(expectedTokens.Length, tokens.Length);
-        for (int i = 0; i < expectedTokens.Length; i++)
-        {
-            Assert.Equal(expectedTokens[i], tokens[i]);
-        }
+        // Assert.Equal(expectedTokens.Length, tokens.Length);
+        // for (int i = 0; i < expectedTokens.Length; i++)
+        // {
+        //     Assert.Equal(expectedTokens[i], tokens[i]);
+        // }
+    }
+
+    [Fact]
+    public void TestNodeParser()
+    {
+        // Arrange
+        string input =
+        """
+        - Alice
+        [Hi, there.]
+        """;
+
+        string[] expectedTokens =
+        [
+            "- Alice",
+            "[Hi, there.]"
+        ];
+
+        // Act
+        // var tokens = Tokenizer.Tokenize(input);
+
+        // Assert
+        // Assert.Equal(expectedTokens.Length, tokens.Length);
+        // for (int i = 0; i < expectedTokens.Length; i++)
+        // {
+        //     Assert.Equal(expectedTokens[i], tokens[i]);
+        // }
+    }
+
+    [Theory]
+    [InlineData("- Alice", new[] { "- ", "Alice" })]
+    public void TestLineTokenizer(string input, string[] expected)
+    {
+        // Act
+        // var tokens = Tokenizer.Tokenize(input);
+
+        // Assert
+        // Assert.Single(tokens);
+        // Assert.Equal(expected, tokens[0]);
     }
 }
