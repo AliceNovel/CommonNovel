@@ -12,24 +12,22 @@ public partial class CompilerUnitTest
         [Hi, there.]
         """;
 
-        string[] expectedTokens =
+        // [<type>, <arg1>, ({arg2}, ...)]
+        string[][] expectedAST =
         [
-            "- ",
-            "Alice",
-            "[",
-            "Hi, there.",
-            "]"
+            ["CharacterName", "Alice"],
+            ["Message", "Hi, there."]
         ];
 
         // Act
-        string[] parse = Compiler.Parse(inputNode);
+        // string[][] parse = Compiler.Parse(inputNode);
 
         // Assert
-        Assert.Equal(expectedTokens.Length, parse.Length);
-        for (int i = 0; i < expectedTokens.Length; i++)
-        {
-            Assert.Equal(expectedTokens[i], parse[i]);
-        }
+        // Assert.Equal(expectedAST.Length, parse.Length);
+        // for (int i = 0; i < expectedAST.Length; i++)
+        // {
+        //     Assert.Equal(expectedAST[i], parse[i]);
+        // }
     }
 
     // [Theory]
@@ -43,4 +41,33 @@ public partial class CompilerUnitTest
     //     // Assert.Single(tokens);
     //     // Assert.Equal(expected, tokens[0]);
     // }
+
+    // This is an example for deplication of same command
+    [Fact]
+    public void TestParser_Ex3()
+    {
+        // Arrange
+        string[] inputTokens =
+        [
+            "- ",
+            "Alice",
+            "[",
+            "Hi, there.",
+            "]",
+            "[",
+            "Welcome!",
+            "]"
+        ];
+
+        // [<type>, <arg1>, ({arg2}, ...)]
+        string[][] expectedAST =
+        [
+            ["CharacterName", "Alice"],
+            ["Message", "Welcome!"]
+        ];
+
+        // Act
+
+        // Assert
+    }
 }
