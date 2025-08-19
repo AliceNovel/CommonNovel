@@ -1,6 +1,6 @@
 namespace CommonNovel.Tests;
 
-public class ASTUnitTest
+public partial class CompilerUnitTest
 {
     [Fact]
     public void TestAST()
