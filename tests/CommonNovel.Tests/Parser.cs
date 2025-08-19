@@ -30,34 +30,30 @@ public partial class CompilerUnitTest
         // }
     }
 
-    // [Theory]
-    // [InlineData("- Alice", new[] { "- ", "Alice" })]
-    // public void TestParserPatern(string input, string[] expected)
-    // {
-    //     // Act
-    //     // var tokens = Tokenizer.Tokenize(input);
+    [Theory]
+    [InlineData("- Alice", new[] { "CharacterName", "Alice" })]
+    [InlineData("[Hi, there.]", new[] { "Message", "Hi, there." })]
+    public void TestParserPatern(string input, string[] expected)
+    {
+        // Act
+        // string[][] parse = Compiler.Parse(input);
 
-    //     // Assert
-    //     // Assert.Single(tokens);
-    //     // Assert.Equal(expected, tokens[0]);
-    // }
+        // Assert
+        // Assert.Single(parse);
+        // Assert.Equal(expected, parse[0]);
+    }
 
     // This is an example for deplication of same command
     [Fact]
     public void TestParser_Ex3()
     {
         // Arrange
-        string[] inputTokens =
-        [
-            "- ",
-            "Alice",
-            "[",
-            "Hi, there.",
-            "]",
-            "[",
-            "Welcome!",
-            "]"
-        ];
+        string inputNode =
+        """
+        - Alice
+        [Hi, there.]
+        [Welcome!]
+        """;
 
         // [<type>, <arg1>, ({arg2}, ...)]
         string[][] expectedAST =
@@ -67,7 +63,13 @@ public partial class CompilerUnitTest
         ];
 
         // Act
+        // string[][] parse = Compiler.Parse(inputNode);
 
         // Assert
+        // Assert.Equal(expectedAST.Length, parse.Length);
+        // for (int i = 0; i < expectedAST.Length; i++)
+        // {
+        //     Assert.Equal(expectedAST[i], parse[i]);
+        // }
     }
 }
