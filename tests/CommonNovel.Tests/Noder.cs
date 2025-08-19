@@ -1,12 +1,12 @@
 namespace CommonNovel.Tests;
 
-public class TokenizerUnitTest
+public partial class CompilerUnitTest
 {
     [Fact]
     public void TestNoder()
     {
         // Arrange
-        string inputCommonNovel =
+        string input =
         """
         - Alice
         [Hi, Bob!]
@@ -29,13 +29,13 @@ public class TokenizerUnitTest
         ];
 
         // Act
-        // string[] nodes = Tokenizer.Tokenize(input);
+        string[] nodes = Compiler.Noder(input);
 
         // Assert
-        // Assert.Equal(expectedNodes.Length, nodes.Length);
-        // for (int i = 0; i < expectedNodes.Length; i++)
-        // {
-        //     Assert.Equal(expectedNodes[i], nodes[i]);
-        // }
+        Assert.Equal(expectedNodes.Length, nodes.Length);
+        for (int i = 0; i < expectedNodes.Length; i++)
+        {
+            Assert.Equal(expectedNodes[i], nodes[i]);
+        }
     }
 }

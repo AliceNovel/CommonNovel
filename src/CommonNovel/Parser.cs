@@ -1,18 +1,15 @@
 ﻿namespace CommonNovel;
 
-public static class Tokenizer
+public partial class Compiler
 {
-    public static string[] Tokenize(string input)
+    public static string[] Tokenizer(string input)
     {
         return [];
     }
-}
 
-public static class Parser
-{
     public static string[] Parse(string input)
     {
         // Use the Tokenizer to split the input into tokens
-        return Tokenizer.Tokenize(input);
+        return Tokenizer(input);
     }
 }
