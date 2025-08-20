@@ -12,35 +12,25 @@ public partial class CompilerUnitTest
         [Hi, there.]
         """;
 
-        // [<type>, <arg1>, ({arg2}, ...)]
+        // [<type>, <arg>]
         string[][] expectedAST =
         [
             ["CharacterName", "Alice"],
-            ["Message", "Hi, there."]
+            ["Messages", "Hi, there."]
         ];
 
         // Act
-        // string[][] parse = Compiler.Parse(inputNode);
+        string[][] ast = Compiler.Parse(inputNode);
 
         // Assert
-        // Assert.Equal(expectedAST.Length, parse.Length);
-        // for (int i = 0; i < expectedAST.Length; i++)
-        // {
-        //     Assert.Equal(expectedAST[i], parse[i]);
-        // }
-    }
-
-    [Theory]
-    [InlineData("- Alice", new[] { "CharacterName", "Alice" })]
-    [InlineData("[Hi, there.]", new[] { "Message", "Hi, there." })]
-    public void TestParserPatern(string input, string[] expected)
-    {
-        // Act
-        // string[][] parse = Compiler.Parse(input);
-
-        // Assert
-        // Assert.Single(parse);
-        // Assert.Equal(expected, parse[0]);
+        Assert.Equal(expectedAST.Length, ast.Length);
+        for (int i = 0; i < expectedAST.Length; i++)
+        {
+            for (int j = 0; j < expectedAST[i].Length; j++)
+            {
+                Assert.Equal(expectedAST[i][j], ast[i][j]);
+            }
+        }
     }
 
     // This is an example for deplication of same command
@@ -55,21 +45,33 @@ public partial class CompilerUnitTest
         [Welcome!]
         """;
 
-        // [<type>, <arg1>, ({arg2}, ...)]
+        // [<type>, <arg>]
         string[][] expectedAST =
         [
             ["CharacterName", "Alice"],
-            ["Message", "Welcome!"]
+            ["Messages", "Welcome!"]
         ];
 
         // Act
-        // string[][] parse = Compiler.Parse(inputNode);
+        string[][] ast = Compiler.Parse(inputNode);
 
         // Assert
-        // Assert.Equal(expectedAST.Length, parse.Length);
+        // Assert.Equal(expectedAST.Length, ast.Length);
         // for (int i = 0; i < expectedAST.Length; i++)
         // {
-        //     Assert.Equal(expectedAST[i], parse[i]);
+        //     Assert.Equal(expectedAST[i], ast[i]);
         // }
+    }
+
+    [Theory]
+    [InlineData("- Alice", new[] { "CharacterName", "Alice" })]
+    [InlineData("[Hi, there.]", new[] { "Messages", "Hi, there." })]
+    public void TestParserPatern(string input, string[] expected)
+    {
+        // Act
+        string[][] ast = Compiler.Parse(input);
+
+        // Assert
+        Assert.Equal(expected, ast[0]);
     }
 }

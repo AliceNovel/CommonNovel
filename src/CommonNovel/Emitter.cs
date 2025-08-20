@@ -18,7 +18,6 @@ public partial class Compiler
     //                 // Processing
     //                 break;
 
-    //             case "Message":
     //             case "Messages":
     //             case "messages":
     //                 // Processing
