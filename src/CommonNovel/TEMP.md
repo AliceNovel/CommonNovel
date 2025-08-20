@@ -1,10 +1,14 @@
-namespace CommonNovel;
+# CommonNovel Sample
 
-public partial class Compiler
-{
-    public static void Main(string[] args)
-    {
-        string[] nodes = Noder(args[0]);
+## Usage
+
+WIP
+
+<!--
+```cs
+        using CommonNovel;
+
+        string[] nodes = Compiler.Noder(args[0]);
         string[][] tokens = [];
         // string[][][] result = [];
 
@@ -12,10 +16,10 @@ public partial class Compiler
         foreach (string node in nodes)
         {
             Array.Resize(ref tokens, i + 1);
-            tokens[i] = Parse(node);
+            tokens[i] = Compiler.Parse(node);
             i++;
         }
 
         // AST([]);
-    }   
-}
+```
+-->
