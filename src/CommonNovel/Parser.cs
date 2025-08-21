@@ -1,10 +1,14 @@
-﻿using System.Globalization;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace CommonNovel;
 
 public partial class Compiler
 {
+    /// <summary>
+    /// CommonNovel Node to AST
+    /// </summary>
+    /// <param name="node">CommonNovel Node</param>
+    /// <returns>AST</returns>
     public static string[][] Parse(string node)
     {
         string[][] ast = [];
