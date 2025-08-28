@@ -4,6 +4,36 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <!-- NuGet -->
+    <PackageId>AliceProject.CommonNovel</PackageId>
+    <!-- <Version>0.1.0</Version> -->
+    <Authors>AliceProject</Authors>
+    <Company>$(Authors)</Company>
+    <Copyright>© Alice Project. All rights reserved.</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IsPackable>True</IsPackable>
+    <PackageProjectUrl>https://github.com/AliceNovel/CommonNovel</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AliceNovel/CommonNovel</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>commonnovel;aliceproject;anov;anovsyntax;</PackageTags>
+    <IncludeSymbols>True</IncludeSymbols>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Title>CommonNovel</Title>
+    <Description>Provides 'CommonNovel', a language designed for next-generation visual novels.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <DebugType>portable</DebugType>
+    <!-- <PackageIcon>icon.png</PackageIcon> -->    
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md">
+      <Pack>True</Pack>
+      <PackagePath>/</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
