@@ -1,0 +1,28 @@
+changelog:
+  categories:
+    - title: Specifications 🧬
+      labels:
+        - "spec"
+
+    - title: Implementions 📗
+      labels:
+        - "csharp"
+
+    - title: Infrastructures 🗄
+      labels:
+        - "area/infrastructure"
+
+    - title: Bug Fix 🦋
+      labels:
+        - "bug"
+
+    - title: Dependencies 🕸️
+      labels:
+        - "dependencies"
+      authors:
+        - dependabot
+
+    - title: Others 🛠
+      labels:
+        - "enhancement"
+        - "*"
