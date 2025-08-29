@@ -4,4 +4,4 @@ CommonNovel is a rationalized version of Advanced Novel Syntax (Anov Syntax), wi
 
 ## License
 
-Licensed under the [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+Licensed under the [MIT License](./LICENSE).
