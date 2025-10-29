@@ -1,6 +1,6 @@
 # CommonNovel
 
-CommonNovel is a rationalized version of Advanced Novel Syntax (Anov Syntax), with a spec.
+CommonNovel is a rationalized version of Advanced Novel Syntax (Anov Syntax), with a specification.
 
 ### Status
 
