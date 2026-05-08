@@ -12,10 +12,7 @@ public class Program
 [MemoryDiagnoser]
 public class Benchmarks
 {
-    [Benchmark]
-    public void RunNoder()
-    {
-        string input =
+    private readonly string _input =
         """
         - Alice
         [Hi, Bob!]
@@ -25,26 +22,20 @@ public class Benchmarks
 
         """;
 
-        _ = Compiler.Noder(input);
-    }
-
-    [Benchmark]
-    public void RunParser()
-    {
-        string inputNode =
+    private readonly string _inputNode =
         """
         - Alice
         [Hi, there.]
         """;
 
-        _ = Compiler.Parse(inputNode);
-    }
+    private readonly string[] _inputAST = ["CharacterName", "Alice"];
 
     [Benchmark]
-    public void RunExecutor()
-    {
-        string[] inputAST = ["CharacterName", "Alice"];
+    public void RunNoder() => _ = Compiler.Noder(_input);
 
-        _ = Compiler.Executor(inputAST);
-    }
+    [Benchmark]
+    public void RunParser() => _ = Compiler.Parse(_inputNode);
+
+    [Benchmark]
+    public void RunExecutor() => _ = Compiler.Executor(_inputAST);
 }
