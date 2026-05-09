@@ -2,23 +2,10 @@
 
 public partial class CompilerUnitTest
 {
-    [Fact]
-    public void TestParser()
+    [Theory]
+    [MemberData(nameof(ParserTestData))]
+    public void TestParser(string inputNode, string[][] expectedAST)
     {
-        // Arrange
-        string inputNode =
-        """
-        - Alice
-        [Hi, there.]
-        """;
-
-        // [<type>, <arg>]
-        string[][] expectedAST =
-        [
-            ["CharacterName", "Alice"],
-            ["Messages", "Hi, there."]
-        ];
-
         // Act
         string[][] ast = Compiler.Parse(inputNode);
 
@@ -33,35 +20,34 @@ public partial class CompilerUnitTest
         }
     }
 
-    // This is an example for deplication of same command
-    [Fact]
-    public void TestParser_Ex3()
-    {
-        // Arrange
-        string inputNode =
-        """
-        - Alice
-        [Hi, there.]
-        [Welcome!]
-        """;
-
-        // [<type>, <arg>]
-        string[][] expectedAST =
-        [
-            ["CharacterName", "Alice"],
-            ["Messages", "Welcome!"]
-        ];
-
-        // Act
-        string[][] ast = Compiler.Parse(inputNode);
-
-        // Assert
-        // Assert.Equal(expectedAST.Length, ast.Length);
-        // for (int i = 0; i < expectedAST.Length; i++)
-        // {
-        //     Assert.Equal(expectedAST[i], ast[i]);
-        // }
-    }
+    public static IEnumerable<object[]> ParserTestData =>
+        new List<object[]>
+        {
+            new object[] // CRLF
+            {
+                "- Alice\r\n[Hi, there.]",
+                (string[][])[
+                    ["CharacterName", "Alice"],
+                    ["Messages", "Hi, there."]
+                ]
+            },
+            new object[] // LF
+            {
+                "- Alice\n[Hi, there.]",
+                (string[][])[
+                    ["CharacterName", "Alice"],
+                    ["Messages", "Hi, there."]
+                ]
+            },
+            // new object[] // Example3 (Future)
+            // {
+            //     "- Alice\r\n[Hi, there.]\r\n[Welcome!]",
+            //     (string[][])[
+            //         ["CharacterName", "Alice"],
+            //         ["Messages", "Welcome!"]
+            //     ]
+            // }
+        };
 
     [Theory]
     [InlineData("- Alice", new[] { "CharacterName", "Alice" })]
