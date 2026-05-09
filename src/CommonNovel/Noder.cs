@@ -9,34 +9,34 @@ public partial class Compiler
     /// <returns>Nodes</returns>
     public static string[] Noder(string input)
     {
-        string[] lines = [];
-        string[] nodes = [];
+        ReadOnlySpan<char> inputSpan = input.AsSpan();
+        List<string> nodeList = [];
 
-        using (StringReader reader = new(input))
+        int start = 0;
+        for (int i = 0; i < inputSpan.Length; i++)
         {
-            string? line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                lines = [.. lines, line];
-            }
+            int end;
+            if (inputSpan[i] != '\n') continue;
+
+            // "\n\n" (LF) or "\r\n\r\n" (CRLF) => Split
+            if (i + 1 < inputSpan.Length
+                        && inputSpan[i + 1] == '\n')
+                end = i + 2;
+            else if (i + 2 < inputSpan.Length
+                        && inputSpan[i + 1] == '\r'
+                        && inputSpan[i + 2] == '\n')
+                end = i + 3;
+            else continue;
+
+            ReadOnlySpan<char> node = inputSpan[start..end].TrimEnd(['\r', '\n']);
+            nodeList.Add(node.ToString());
+
+            start = end;
         }
 
-        int i = 0;
-        foreach (var line in lines)
-        {
-            if (string.IsNullOrWhiteSpace(line))
-            {
-                i++;
-                continue;
-            }
+        if (start < inputSpan.Length)
+            nodeList.Add(inputSpan[start..].TrimEnd(['\r', '\n']).ToString());
 
-            Array.Resize(ref nodes, i + 1);
-            if (string.IsNullOrWhiteSpace(nodes[i]))
-                nodes[i] = line;
-            else
-                nodes[i] += Environment.NewLine + line;
-        }
-
-        return nodes;
+        return nodeList.ToArray();
     }
 }
