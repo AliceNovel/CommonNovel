@@ -1,4 +1,6 @@
-﻿namespace CommonNovel.Tests;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace CommonNovel.Tests;
 
 public partial class CompilerUnitTest
 {
@@ -20,6 +22,7 @@ public partial class CompilerUnitTest
         }
     }
 
+    [ExcludeFromCodeCoverage]
     public static IEnumerable<object[]> ParserTestData =>
         new List<object[]>
         {
