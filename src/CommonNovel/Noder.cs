@@ -9,34 +9,40 @@ public partial class Compiler
     /// <returns>Nodes</returns>
     public static string[] Noder(string input)
     {
-        string[] lines = [];
-        string[] nodes = [];
+        ReadOnlySpan<char> inputSpan = input.AsSpan();
+        List<string> nodeList = [];
 
-        using (StringReader reader = new(input))
+        int start = 0;
+        for (int i = 0; i < inputSpan.Length; i++)
         {
-            string? line;
-            while ((line = reader.ReadLine()) != null)
+            int? end = null;
+            if (inputSpan[i] != '\n') continue;
+
+            // "\n\n" (LF) or "\r\n\r\n" (CRLF), "\n  \t\n" (tabs, spaces) => Split
+            for (int j = i + 1; j < inputSpan.Length; j++)
             {
-                lines = [.. lines, line];
+                if (inputSpan[j] == '\n')
+                {
+                    end = j + 1;
+                    break;
+                }
+                if (char.IsWhiteSpace(inputSpan[j]) || (inputSpan[i] == '\r'))
+                    continue;
+                else
+                    break;
             }
+
+            if (end is null) continue;
+
+            ReadOnlySpan<char> node = inputSpan[start..end.Value].Trim();
+            nodeList.Add(node.ToString());
+
+            start = end.Value;
         }
 
-        int i = 0;
-        foreach (var line in lines)
-        {
-            if (string.IsNullOrWhiteSpace(line))
-            {
-                i++;
-                continue;
-            }
+        if (start < inputSpan.Length)
+            nodeList.Add(inputSpan[start..].Trim().ToString());
 
-            Array.Resize(ref nodes, i + 1);
-            if (string.IsNullOrWhiteSpace(nodes[i]))
-                nodes[i] = line;
-            else
-                nodes[i] += Environment.NewLine + line;
-        }
-
-        return nodes;
+        return nodeList.ToArray();
     }
 }

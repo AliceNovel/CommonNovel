@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace CommonNovel.Tests;
 
 public partial class CompilerUnitTest
@@ -17,8 +19,7 @@ public partial class CompilerUnitTest
         }
     }
 
-    private static readonly string Nl = Environment.NewLine;
-
+    [ExcludeFromCodeCoverage]
     public static IEnumerable<object[]> NoderTestData =>
         new List<object[]>
         {
@@ -26,22 +27,32 @@ public partial class CompilerUnitTest
             {
                 "- Alice\r\n[Hi, Bob!]\r\n\r\n- Bob\r\n[Alice!]\r\n\r\n",
                 (string[])[
-                    $"- Alice{Nl}[Hi, Bob!]", // Future -> "\r\n"
-                    $"- Bob{Nl}[Alice!]" // Future -> "\r\n"
+                    "- Alice\r\n[Hi, Bob!]",
+                    "- Bob\r\n[Alice!]"
                 ]
             },
             new object[] // LF
             {
                 "- Alice\n[Hi, Bob!]\n\n- Bob\n[Alice!]\n\n",
                 (string[])[
-                    $"- Alice{Nl}[Hi, Bob!]", // Future -> '\n'
-                    $"- Bob{Nl}[Alice!]" // Future -> '\n'
+                    "- Alice\n[Hi, Bob!]",
+                    "- Bob\n[Alice!]"
                 ]
             },
             new object[] // three enters
             {
                 "\r\n\r\n\r\n",
-                (string[])[] // Future -> [ "", "" ]
+                (string[])[ "", "" ]
+            },
+            new object[] // single element
+            {
+                "- Alice",
+                (string[])[ "- Alice" ]
+            },
+            new object[] // spaces and tabs between newline-codes (\n or \r\n)
+            {
+                "\r\n  \t   \r\n",
+                (string[])[ "" ]
             }
         };
 }
