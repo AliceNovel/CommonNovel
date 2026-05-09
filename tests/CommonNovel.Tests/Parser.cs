@@ -31,7 +31,7 @@ public partial class CompilerUnitTest
                     ["Messages", "Hi, there."]
                 ]
             },
-            new object[] // LR
+            new object[] // LF
             {
                 "- Alice\n[Hi, there.]",
                 (string[][])[
@@ -39,7 +39,7 @@ public partial class CompilerUnitTest
                     ["Messages", "Hi, there."]
                 ]
             },
-            // new object[] // Example3
+            // new object[] // Example3 (Future)
             // {
             //     "- Alice\r\n[Hi, there.]\r\n[Welcome!]",
             //     (string[][])[
