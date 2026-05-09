@@ -48,6 +48,11 @@ public partial class CompilerUnitTest
             {
                 "- Alice",
                 (string[])[ "- Alice" ]
+            },
+            new object[] // spaces and tabs between newline-codes (\n or \r\n)
+            {
+                "\r\n  \t   \r\n",
+                (string[])[ "" ]
             }
         };
 }

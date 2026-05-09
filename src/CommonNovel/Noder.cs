@@ -34,14 +34,14 @@ public partial class Compiler
 
             if (end is null) continue;
 
-            ReadOnlySpan<char> node = inputSpan[start..end.Value].TrimEnd(['\r', '\n']);
+            ReadOnlySpan<char> node = inputSpan[start..end.Value].Trim();
             nodeList.Add(node.ToString());
 
             start = end.Value;
         }
 
         if (start < inputSpan.Length)
-            nodeList.Add(inputSpan[start..].TrimEnd(['\r', '\n']).ToString());
+            nodeList.Add(inputSpan[start..].Trim().ToString());
 
         return nodeList.ToArray();
     }
