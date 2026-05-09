@@ -17,6 +17,8 @@ public partial class CompilerUnitTest
         }
     }
 
+    private static readonly string Nl = Environment.NewLine;
+
     public static IEnumerable<object[]> NoderTestData =>
         new List<object[]>
         {
@@ -24,16 +26,16 @@ public partial class CompilerUnitTest
             {
                 "- Alice\r\n[Hi, Bob!]\r\n\r\n- Bob\r\n[Alice!]\r\n\r\n",
                 (string[])[
-                    "- Alice\r\n[Hi, Bob!]",
-                    "- Bob\r\n[Alice!]"
+                    $"- Alice{Nl}[Hi, Bob!]", // Future -> "\r\n"
+                    $"- Bob{Nl}[Alice!]" // Future -> "\r\n"
                 ]
             },
             new object[] // LF
             {
                 "- Alice\n[Hi, Bob!]\n\n- Bob\n[Alice!]\n\n",
                 (string[])[
-                    "- Alice\r\n[Hi, Bob!]", // Future -> '\n'
-                    "- Bob\r\n[Alice!]" // Future -> '\n'
+                    $"- Alice{Nl}[Hi, Bob!]", // Future -> '\n'
+                    $"- Bob{Nl}[Alice!]" // Future -> '\n'
                 ]
             },
             new object[] // three enters
