@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace CommonNovel.Export.NovelIL.Tests;
+namespace CommonNovel.Export.Tests;
 
 public class ExporterTest
 {
@@ -11,10 +11,9 @@ public class ExporterTest
 
     [ExcludeFromCodeCoverage]
     public static IEnumerable<object[]> ExporterTestData =>
-        new List<object[]>
-        {
-            new object[] // Ex4.1
-            {
+        [
+            // Ex4.1
+            [
                 "[Hi!]",
                 """
                 {
@@ -25,6 +24,6 @@ public class ExporterTest
                   ]
                 }
                 """
-            },
-        };
+            ],
+        ];
 }
